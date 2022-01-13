@@ -1,11 +1,7 @@
 let onoff = 0
 let lights = 0
 input.onButtonPressed(Button.A, function () {
-    if (onoff == 0) {
-        onoff = 1
-    } else {
-        onoff = 0
-    }
+    onoff = 1
 })
 function squidLight () {
     for (let index = 0; index < 4; index++) {
@@ -27,6 +23,9 @@ function blobfishOne (onoff: number) {
         servos.P2.run(0)
     }
 }
+input.onButtonPressed(Button.B, function () {
+    onoff = 0
+})
 function blobfishTwo (onoff: number) {
     if (onoff == 1) {
         servos.P1.run(63)
@@ -36,6 +35,7 @@ function blobfishTwo (onoff: number) {
 }
 basic.forever(function () {
     if (onoff == 1) {
+        // starfish
         servos.P0.run(50)
         if (input.lightLevel() > 100) {
             blobfishOne(1)
