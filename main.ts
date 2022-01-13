@@ -1,11 +1,17 @@
 let onoff = 0
 let lights = 0
+function allOff () {
+    blobfishOne(0)
+    blobfishTwo(0)
+    squidLight()
+}
 input.onButtonPressed(Button.A, function () {
     onoff = 1
+    basic.showIcon(IconNames.Happy)
 })
 function squidLight () {
     for (let index = 0; index < 4; index++) {
-        if (lights == 0) {
+        if (0 == 0) {
             lights = 1
         } else {
             lights = 0
@@ -25,6 +31,7 @@ function blobfishOne (onoff: number) {
 }
 input.onButtonPressed(Button.B, function () {
     onoff = 0
+    basic.showIcon(IconNames.Sad)
 })
 function blobfishTwo (onoff: number) {
     if (onoff == 1) {
@@ -40,11 +47,12 @@ basic.forever(function () {
         if (input.lightLevel() > 100) {
             blobfishOne(1)
             blobfishTwo(1)
-        } else {
-            blobfishOne(0)
-            blobfishTwo(0)
             squidLight()
+        } else {
+            allOff()
         }
+    } else {
+        allOff()
     }
     basic.pause(5000)
 })
